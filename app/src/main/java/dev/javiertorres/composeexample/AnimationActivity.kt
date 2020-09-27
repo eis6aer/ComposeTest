@@ -12,6 +12,8 @@ import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -20,6 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import dev.javiertorres.composeexample.cloud.AnimatedCloudView
+import dev.javiertorres.composeexample.cloud.CloudState
 import dev.javiertorres.composeexample.cloud.CloudView
 import dev.javiertorres.composeexample.ui.ComposeExampleTheme
 
@@ -39,6 +43,8 @@ class AnimationActivity : AppCompatActivity() {
 
     @Composable
     fun mainButtons() {
+        val cloudState = remember { mutableStateOf(CloudState.IDLE) }
+
         Column(
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier.fillMaxHeight().fillMaxWidth(),
@@ -54,8 +60,13 @@ class AnimationActivity : AppCompatActivity() {
                 modifier = Modifier.fillMaxHeight().fillMaxWidth(),
                 horizontalGravity = Alignment.CenterHorizontally
             ) {
-                CloudView()
-                Button(onClick = {}) {
+                AnimatedCloudView(cloudState.value)
+                Button(onClick = {
+                    if (cloudState.value == CloudState.ANIMATING) {
+                        cloudState.value = CloudState.ENDED
+                    } else
+                        cloudState.value = CloudState.ANIMATING
+                }) {
                     Text("Begin Upload")
                 }
             }
