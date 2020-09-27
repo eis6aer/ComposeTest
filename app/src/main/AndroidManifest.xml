@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeExample">
+        <activity android:name=".AnimationActivity"></activity>
         <activity
             android:name=".DiventsActivity"
-            android:theme="@style/Theme.ComposeExample.NoActionBar"/>
+            android:theme="@style/Theme.ComposeExample.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.ComposeExample.NoActionBar">

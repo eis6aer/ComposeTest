@@ -54,7 +54,9 @@ class MainActivity : AppCompatActivity() {
                             }) {
                                 Icon(Icons.Filled.Favorite)
                             }
-                            IconButton(onClick = { /* doSomething() */ }) {
+                            IconButton(onClick = {
+                                startActivity(Intent(this@MainActivity, AnimationActivity::class.java))
+                            }) {
                                 Icon(Icons.Filled.Favorite)
                             }
                             IconButton(onClick = { /* doSomething() */ }) {
